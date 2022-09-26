@@ -1,0 +1,24 @@
+<mat-card class="example-card card_style" style="text-align: center">
+  <label>Login Form</label>
+  <p style="color: darkred">{{message}}</p>
+  <form #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div style="margin-top: 10px">
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label>Login</mat-label>
+        <input name="login" ngModel required [minlength]="5" matInput #inputLogin maxlength="20" placeholder="Ex. Nougat">
+        <mat-hint align="end">{{inputLogin.value?.length || 0}}/20</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" name="password" required ngModel matInput [minlength]="5" #inputPassword maxlength="20" placeholder="Ex. Nougat">
+        <mat-hint align="end">{{inputPassword.value?.length || 0}}/20</mat-hint>
+      </mat-form-field>
+    </div>
+    <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary" style="margin-top: 10px" >Send</button>
+  </form>
+</mat-card>
+
+
+

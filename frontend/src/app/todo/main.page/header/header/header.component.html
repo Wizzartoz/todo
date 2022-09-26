@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span><a class="href_class" href="">MYDO</a></span>
+  <div style="margin-left: 1100px" class="d-inline-block" *ngIf="!isLoggedIn">
+    <button style="margin-right: 10px" mat-raised-button color="accent" (click)="router.navigateByUrl('/login')">Login
+    </button>
+    <button mat-raised-button color="accent" (click)="router.navigateByUrl('/register')">Register</button>
+  </div>
+  <div style="margin-left: 1200px" class="d-inline-block" *ngIf="isLoggedIn">
+    <button mat-raised-button color="accent" (click)="service.logout()">Logout</button>
+  </div>
+</mat-toolbar>
+

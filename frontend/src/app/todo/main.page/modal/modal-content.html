@@ -1,0 +1,32 @@
+
+  <h2 mat-dialog-title>Create task</h2>
+  <mat-dialog-content class="mat-typography">
+    <form #task="ngForm" (ngSubmit)="addUser(task)">
+    <div class="example-container">
+      <mat-form-field hintLabel="Max 20 characters">
+        <mat-label>Name</mat-label>
+        <input ngModel required [minlength]="3" name="name" matInput #input maxlength="20">
+        <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Select topic</mat-label>
+        <mat-select required name="topic" ngModel>
+          <mat-option value="Sport">Sport</mat-option>
+          <mat-option value="Study">Study</mat-option>
+          <mat-option value="Life">Life</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea name="description" ngModel [maxLength]="200" matInput></textarea>
+      </mat-form-field>
+    </div>
+      <button [disabled]="task.invalid" type="submit" mat-button mat-dialog-close color="primary">Send</button>
+        <button  mat-button mat-dialog-close color="primary">Close</button>
+    </form>
+  </mat-dialog-content>

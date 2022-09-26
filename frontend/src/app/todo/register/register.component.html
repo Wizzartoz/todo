@@ -1,0 +1,28 @@
+<mat-card class="example-card card_style" style="text-align: center">
+  <label>Register Form</label>
+  <p style="color: darkred;">{{errorMessage}}</p>
+  <form #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div style="margin-top: 10px">
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label>Login</mat-label>
+        <input required [minlength]="5" name="login" ngModel matInput #inputLogin maxlength="20" placeholder="Ex. Nougat">
+        <mat-hint align="end">{{inputLogin.value?.length || 0}}/20</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" [minlength]="5" required name="password" ngModel matInput #inputPassword maxlength="20" placeholder="Ex. Nougat">
+        <mat-hint align="end">{{inputPassword.value?.length || 0}}/20</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field hintLabel="Max 30 characters" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input email name="email" ngModel matInput #inputEmail maxlength="30" placeholder="Ex. Nougat">
+        <mat-hint align="end">{{inputEmail.value?.length || 0}}/30</mat-hint>
+      </mat-form-field>
+    </div>
+    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" style="margin-top: 10px" >Send</button>
+  </form>
+</mat-card>

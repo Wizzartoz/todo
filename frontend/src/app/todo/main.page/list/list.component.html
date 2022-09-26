@@ -1,0 +1,55 @@
+<!--<mat-paginator (page)="pagination($event)" [length]="totalItems" [pageSizeOptions]="[5, 10]" aria-label="Select page">-->
+<!--</mat-paginator>-->
+<div>
+  <div *ngFor="let task of tasks | paginate : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+}">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            <ng-container *ngIf="task.status == 'Open'">
+              <ng-container *ngIf="isEdit && taskId === task.id">
+                <input  [(ngModel)]="task.name">
+              </ng-container>
+              <ng-container *ngIf="!(isEdit && taskId === task.id)">
+                {{task.name}}
+              </ng-container>
+            </ng-container>
+            <p *ngIf="task.status == 'Close'">
+              <del style="color: darkred">{{task.name}}</del>
+            </p>
+          </mat-panel-title>
+
+          <mat-panel-description>
+            {{task.createTime | date}}
+          </mat-panel-description>
+          <button (click)="$event.stopPropagation();delete(task.id)" mat-icon-button color="primary"
+                  aria-label="Example icon button with a heart icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button (click)="$event.stopPropagation();updateTaskStatus(task.id,task.status)" mat-icon-button
+                  color="primary"
+                  aria-label="Example icon button with a heart icon">
+            <mat-icon>done</mat-icon>
+          </button>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="isEdit && taskId === task.id">
+          <input [(ngModel)]="task.description">
+        </ng-container>
+        <ng-container *ngIf="!(isEdit && taskId === task.id)">
+          {{task.description}}
+        </ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <pagination-controls
+
+    (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>
+</div>

@@ -1,0 +1,70 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Why todo?
+            </mat-panel-title>
+            <mat-panel-description>
+              your life will become easier
+              <mat-icon>check_small</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          I'm serious, stop going with the flow, start planning your life already.
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              I can choose another app
+            </mat-panel-title>
+            <mat-panel-description>
+              open and find out
+              <mat-icon>check_small</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          yeas , you can
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Why should I choose the above application?
+            </mat-panel-title>
+            <mat-panel-description>
+              hmhmhmmhhm........
+              <mat-icon>check_small</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          because...
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">End</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+
+      </mat-accordion>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-3">
+      <button style="width: 100%" (click)="router.navigateByUrl('/todo')" mat-raised-button color="accent">TODO</button>
+    </div>
+  </div>
+</div>

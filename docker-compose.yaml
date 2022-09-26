@@ -1,0 +1,42 @@
+version: "3.5"
+services:
+  db_postgre:
+    container_name: db_postgre
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    image: postgres:12.12
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./backend/task.sql:/docker-entrypoint-initdb.d/task.sql
+    restart: always
+    networks:
+      - reverse-proxy
+  backend:
+    image: spring_backend
+    container_name: spring
+    build:
+      context: ./backend
+    expose:
+      - 8080
+    restart: always
+    depends_on:
+      - db_postgre
+    networks:
+      - reverse-proxy
+
+  frontend:
+    image: angular_frontend
+    container_name: angular
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - reverse-proxy
+
+networks:
+  reverse-proxy:
+    name: reverse-proxy
