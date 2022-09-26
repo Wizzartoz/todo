@@ -5,7 +5,7 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_PASSWORD=magik455
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     image: postgres:12.12
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
