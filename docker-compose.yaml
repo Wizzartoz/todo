@@ -5,7 +5,7 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PASSWORD=magik455
     image: postgres:12.12
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
@@ -13,11 +13,17 @@ services:
     restart: always
     networks:
       - reverse-proxy
+
   backend:
     image: spring_backend
     container_name: spring
     build:
       context: ./backend
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_URL=${POSTGRES_URL}
+      - JWT_KEY=${JWT_KEY}
     expose:
       - 8080
     restart: always
